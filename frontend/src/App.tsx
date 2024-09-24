@@ -1,14 +1,21 @@
-
 import './App.css'
+import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import Login from './pages/Login'
+import Blogs from './pages/Blogs'
+
+
 
 function App() {
  
   return (
+    <BrowserRouter>
     <>
-      <div className='text-3xl bg-yellow-300'>
-        hiii
-     </div>
+    <Routes>
+      <Route path='/' element={<Login/>}/>
+      <Route path='/blogs' element={<Blogs/>} />
+    </Routes>
     </>
+    </BrowserRouter>
   )
 }
 
