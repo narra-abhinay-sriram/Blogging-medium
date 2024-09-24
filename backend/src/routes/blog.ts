@@ -3,6 +3,7 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 import { postblog, putblog } from "abhinay_narra-medium-blogging";
 import { Hono } from "hono";
 import { verify } from "hono/jwt";
+import { string } from "zod";
 
 
 export  const blogrouter=new Hono<{
@@ -14,6 +15,8 @@ export  const blogrouter=new Hono<{
         userid:number
     }
 }>()
+
+
 
 blogrouter.use("/*",async(c,next)=>{
 
@@ -45,6 +48,7 @@ if(!success)
 const prisma=new PrismaClient({
     datasourceUrl:c.env.DATABASE_URL
 }).$extends(withAccelerate())
+
 
 try{
     const resp=await prisma.post.create({
@@ -94,14 +98,17 @@ blogrouter.get("/bulk",async(c)=>{
     const prism =new PrismaClient({
         datasourceUrl:c.env.DATABASE_URL
     }).$extends(withAccelerate())
+    
     try{
         const blogs=await prism.post.findMany({
             select:{id:true,
                 title:true,
                 description:true,
+                authorid:true,
                 author:{select:{name:true}}
             }
         })
+        console.log(blogs[0].author)
         if(blogs){
             c.status(200)
             return c.json({blogs})

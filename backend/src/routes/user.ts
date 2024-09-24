@@ -25,7 +25,7 @@ userouter.post("/signup",async(c)=>{
    
     try{
         const resp=await prisma.user.create({
-            data:{email:body.email,password:body.password,name:body.username}
+            data:{email:body.email,password:body.password,name:body.name}
         })
         const token= await sign({userid:resp.id},c.env.JWT_SECRET)
         c.status(200)
