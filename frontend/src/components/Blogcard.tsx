@@ -12,6 +12,7 @@ const Blogcard = ({name,date,title,content}:blogcard) => {
       <div className="ml-4 font-bold text-2xl w-3/4">{title}</div>
       <div className=" ml-4 text-sm font-thin text-gray-500 w-3/4">{content.slice(0,90)}....</div>
       <div className="ml-4 mt-4 text-gray-500 font-light">{1+Math.floor((Math.random()*10)) } Minutes</div>
+      <hr></hr>
     </div>
     </div>
   )
