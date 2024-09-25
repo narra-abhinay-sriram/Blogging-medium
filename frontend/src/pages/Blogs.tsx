@@ -1,3 +1,4 @@
+import Appbar from "../components/Appbar";
 import Blogcard from "../components/Blogcard"
 import useBlog from "../components/useBlog"
 
@@ -13,8 +14,14 @@ const Blogs = () => {
   
   return (
     <div className="w-screen h-screen">
-      {vlogs?.map((vlog)=><Blogcard name={vlog.author.name} date={   getRandomDateString(new Date(2020, 0, 1), new Date())
-} title={vlog.title} content={vlog.description} />)}
+      <Appbar/>
+      {vlogs?.map((vlog)=>
+      <Blogcard 
+      id={vlog.id}
+     name={vlog.author.name} 
+      date={   getRandomDateString(new Date(2020, 0, 1), new Date())} 
+      title={vlog.title} 
+      content={vlog.description} />)}
      
      
     </div>
